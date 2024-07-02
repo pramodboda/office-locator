@@ -191,12 +191,7 @@ export default function OfficeLocator() {
               sx={{
                 m: 'auto',
                 width: 420,
-                height: 500,
-                backgroundSize: 'contain',
-                // backgroundImage: (theme) =>
-                //   theme.palette.mode === 'light'
-                //     ? items[selectedItemIndex].imageLight
-                //     : items[selectedItemIndex].imageDark,
+                height: 500
               }}
             >{officeLocations.features[selectedItemIndex].properties.city}</Box>
           </Card>
@@ -222,25 +217,25 @@ export default function OfficeLocator() {
           <Grid container item gap={1} sx={{ display: { xs: 'auto', sm: 'none' } }}>
             {officeLocations.features.map((location) => (
               <Chip
-                key={location.id}
-                label={location.city}
-                onClick={() => handleItemClick(location.id)}
+                key={location.properties.id}
+                label={location.properties.city}
+                onClick={() => handleItemClick(location.properties.id)}
                 sx={{
                   borderColor: (theme) => {
                     if (theme.palette.mode === 'light') {
-                      return selectedItemIndex === location.id ? 'primary.light' : '';
+                      return selectedItemIndex === location.properties.id ? 'primary.light' : '';
                     }
-                    return selectedItemIndex === location.id ? 'primary.light' : '';
+                    return selectedItemIndex === location.properties.id ? 'primary.light' : '';
                   },
                   background: (theme) => {
                     if (theme.palette.mode === 'light') {
-                      return selectedItemIndex === location.id ? 'none' : '';
+                      return selectedItemIndex === location.properties.id ? 'none' : '';
                     }
-                    return selectedItemIndex === location.id ? 'none' : '';
+                    return selectedItemIndex === location.properties.id ? 'none' : '';
                   },
-                  backgroundColor: selectedItemIndex === location.id ? 'primary.main' : '',
+                  backgroundColor: selectedItemIndex === location.properties.id ? 'primary.main' : '',
                   '& .MuiChip-label': {
-                    color: selectedItemIndex === location.id ? '#fff' : '',
+                    color: selectedItemIndex === location.properties.id ? '#fff' : '',
                   },
                 }}
               />
@@ -353,6 +348,8 @@ export default function OfficeLocator() {
                       variant="body2"
                       fontWeight="bold"
                     >
+                      {location.properties.city}
+                      <br/>
                       {location.properties.address}
                     </Typography>
                     <Typography
