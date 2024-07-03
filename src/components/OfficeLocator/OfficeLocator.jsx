@@ -1,4 +1,9 @@
 import * as React from 'react';
+
+import ReactMapGL from "react-map-gl"; 
+// import Fly from "./Components/Fly";
+import {MAP_BOX_TOKEN} from "../../utils/constants"
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -14,119 +19,121 @@ import EdgesensorHighRoundedIcon from '@mui/icons-material/EdgesensorHighRounded
 import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
 
 
+
+
 const officeLocations = {
-    'type': 'FeatureCollection',
-    'features': [
-      {
-        'type': 'Feature',
-        'geometry': {
-          'type': 'Point',
-          'coordinates': [-77.034084142948, 38.909671288923]
-        },
-        'properties': {
-            "id":0,
-          'phoneFormatted': '(202) 234-7336',
-          'phone': '2022347336',
-          'address': '1471 P St NW',
-          'city': 'Hyderabad',
-          'country': 'India',
-          'crossStreet': 'at 15th St NW',
-          'postalCode': '20005',
-          'state': 'D.C.'
-        }
+  'type': 'FeatureCollection',
+  'features': [
+    {
+      'type': 'Feature',
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-77.034084142948, 38.909671288923]
       },
-      {
-        'type': 'Feature',
-        'geometry': {
-          'type': 'Point',
-          'coordinates': [-77.049766, 38.900772]
-        },
-        'properties': {
-            "id":1,
-          'phoneFormatted': '(202) 507-8357',
-          'phone': '2025078357',
-          'address': '2221 I St NW',
-          'city': 'Navi Mumbai',
-          'country': 'India',
-          'crossStreet': 'at 22nd St NW',
-          'postalCode': '20037',
-          'state': 'D.C.'
-        }
+      'properties': {
+        "id": 0,
+        'phoneFormatted': '(202) 234-7336',
+        'phone': '2022347336',
+        'address': '1471 P St NW',
+        'city': 'Hyderabad',
+        'country': 'India',
+        'crossStreet': 'at 15th St NW',
+        'postalCode': '20005',
+        'state': 'D.C.'
+      }
+    },
+    {
+      'type': 'Feature',
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-77.049766, 38.900772]
       },
-      {
-        'type': 'Feature',
-        'geometry': {
-          'type': 'Point',
-          'coordinates': [-77.043929, 38.910525]
-        },
-        'properties': {
-            "id":2,
-          'phoneFormatted': '(202) 387-9338',
-          'phone': '2023879338',
-          'address': '1512 Connecticut Ave NW',
-          'city': 'Bengaluru',
-          'country': 'India',
-          'crossStreet': 'at Dupont Circle',
-          'postalCode': '20036',
-          'state': 'D.C.'
-        }
+      'properties': {
+        "id": 1,
+        'phoneFormatted': '(202) 507-8357',
+        'phone': '2025078357',
+        'address': '2221 I St NW',
+        'city': 'Navi Mumbai',
+        'country': 'India',
+        'crossStreet': 'at 22nd St NW',
+        'postalCode': '20037',
+        'state': 'D.C.'
+      }
+    },
+    {
+      'type': 'Feature',
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-77.043929, 38.910525]
       },
-      {
-        'type': 'Feature',
-        'geometry': {
-          'type': 'Point',
-          'coordinates': [-77.0672, 38.90516896]
-        },
-        'properties': {
-            "id":3,
-          'phoneFormatted': '(202) 337-9338',
-          'phone': '2023379338',
-          'address': '3333 M St NW',
-          'city': 'Pune',
-          'country': 'India',
-          'crossStreet': 'at 34th St NW',
-          'postalCode': '20007',
-          'state': 'D.C.'
-        }
+      'properties': {
+        "id": 2,
+        'phoneFormatted': '(202) 387-9338',
+        'phone': '2023879338',
+        'address': '1512 Connecticut Ave NW',
+        'city': 'Bengaluru',
+        'country': 'India',
+        'crossStreet': 'at Dupont Circle',
+        'postalCode': '20036',
+        'state': 'D.C.'
+      }
+    },
+    {
+      'type': 'Feature',
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-77.0672, 38.90516896]
       },
-      {
-        'type': 'Feature',
-        'geometry': {
-          'type': 'Point',
-          'coordinates': [-77.002583742142, 38.887041080933]
-        },
-        'properties': {
-            "id":4,
-          'phoneFormatted': '(202) 547-9338',
-          'phone': '2025479338',
-          'address': '221 Pennsylvania Ave SE',
-          'city': 'Kolkata',
-          'country': 'India',
-          'crossStreet': 'btwn 2nd & 3rd Sts. SE',
-          'postalCode': '20003',
-          'state': 'D.C.'
-        }
+      'properties': {
+        "id": 3,
+        'phoneFormatted': '(202) 337-9338',
+        'phone': '2023379338',
+        'address': '3333 M St NW',
+        'city': 'Pune',
+        'country': 'India',
+        'crossStreet': 'at 34th St NW',
+        'postalCode': '20007',
+        'state': 'D.C.'
+      }
+    },
+    {
+      'type': 'Feature',
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-77.002583742142, 38.887041080933]
       },
-      {
-        'type': 'Feature',
-        'geometry': {
-          'type': 'Point',
-          'coordinates': [-76.933492720127, 38.99225245786]
-        },
-        'properties': {
-            "id":5,
-          'address': '8204 Baltimore Ave',
-          'city': 'Chennai',
-          'country': 'India',
-          'postalCode': '20740',
-          'state': 'MD'
-        }
+      'properties': {
+        "id": 4,
+        'phoneFormatted': '(202) 547-9338',
+        'phone': '2025479338',
+        'address': '221 Pennsylvania Ave SE',
+        'city': 'Kolkata',
+        'country': 'India',
+        'crossStreet': 'btwn 2nd & 3rd Sts. SE',
+        'postalCode': '20003',
+        'state': 'D.C.'
+      }
+    },
+    {
+      'type': 'Feature',
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-76.933492720127, 38.99225245786]
       },
-     
+      'properties': {
+        "id": 5,
+        'address': '8204 Baltimore Ave',
+        'city': 'Chennai',
+        'country': 'India',
+        'postalCode': '20740',
+        'state': 'MD'
+      }
+    },
 
 
-    ]
-  };
+
+  ]
+};
 
 
 
@@ -158,6 +165,13 @@ const items = [
 ];
 
 export default function OfficeLocator() {
+  const [viewState, setViewState] = React.useState({
+    longitude: -100,
+    latitude: 40,
+    zoom: 3.5
+  });
+
+
   const [selectedItemIndex, setSelectedItemIndex] = React.useState(0);
 
   const handleItemClick = (index) => {
@@ -166,12 +180,12 @@ export default function OfficeLocator() {
   };
 
   const selectedFeature = items[selectedItemIndex];
-  
+
 
   return (
     <Container id="features" sx={{ py: { xs: 8, sm: 16 } }}>
       <Grid container spacing={6}>
-        
+
         <Grid
           item
           xs={12}
@@ -193,10 +207,23 @@ export default function OfficeLocator() {
                 width: 420,
                 height: 500
               }}
-            >{officeLocations.features[selectedItemIndex].properties.city}</Box>
+            >
+              {officeLocations.features[selectedItemIndex].properties.city}
+              <br/>
+              {MAP_BOX_TOKEN}
+              <ReactMapGL
+                mapboxApiAccessToken={MAP_BOX_TOKEN}
+                {...viewState}
+                style={{width: "100%", height: "100%"}}
+                mapStyle="mapbox://styles/mapbox/streets-v9"
+                onViewportChange={(viewState) => setViewState(viewState)}
+              >
+               
+              </ReactMapGL>
+            </Box>
           </Card>
         </Grid>
-        
+
         <Grid item xs={12} md={6}>
           <div>
             <Typography component="h2" variant="h4" color="text.primary">
@@ -241,7 +268,7 @@ export default function OfficeLocator() {
               />
             ))}
           </Grid>
-          
+
           <Box
             component={Card}
             variant="outlined"
@@ -252,7 +279,7 @@ export default function OfficeLocator() {
           >
             <Box
               sx={{
-                
+
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 minHeight: 280,
@@ -293,7 +320,7 @@ export default function OfficeLocator() {
             useFlexGap
             sx={{ width: '100%', display: { xs: 'none', sm: 'flex' } }}
           >
-            {officeLocations.features.map((location , index) => (
+            {officeLocations.features.map((location, index) => (
               <Card
                 key={location.properties.id}
                 variant="outlined"
@@ -349,7 +376,7 @@ export default function OfficeLocator() {
                       fontWeight="bold"
                     >
                       {location.properties.city}
-                      <br/>
+                      <br />
                       {location.properties.address}
                     </Typography>
                     <Typography
@@ -359,7 +386,7 @@ export default function OfficeLocator() {
                     >
                       {/* {description} */}
                     </Typography>
-              
+
                   </Box>
                 </Box>
               </Card>
